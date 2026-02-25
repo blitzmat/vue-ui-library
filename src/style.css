@@ -1,0 +1,47 @@
+@import './components/style.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+    margin-bottom: 1rem;
+}
+ul {
+    list-style: disc;
+}
+ol {
+    list-style: decimal;
+}
+
+ol li,
+ul li {
+    margin-left: 1.5rem;
+}
+
+hr {
+    margin: 1rem 0;
+    border-color: #999;
+}
+.h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+.h2 {
+    font-size: 1.1rem;
+    line-height: 2rem;
+    margin: 1rem 0;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+.example {
+    margin-bottom: 2rem;
+}
+
+.property {
+    margin: 1rem 0;
+}

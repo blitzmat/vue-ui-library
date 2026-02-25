@@ -1,0 +1,17 @@
+# This is an example Bitbucket Pipeline YAML configuration
+
+pipelines:
+  branches:
+    # Define a pipeline for the branch you want to build
+    master:
+      - step:
+          name: Build and Tag Release
+          image: node:20.11.0  # Choose an appropriate Node.js version
+          caches:
+            - node
+          script:
+            - npm install  # Install dependencies
+            - npm run build  # Execute your build script
+            - export VERSION=v$(node -p "require('./package.json').version")  # Get the version from package.json
+            - git tag $VERSION  # Tag the commit with the version number
+            - git push origin $VERSION  # Push the tag to the remote repository

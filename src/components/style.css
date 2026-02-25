@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Transitions */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+    transition: all 0.3s ease;
+}
+
+.slide-left-enter-from,
+.slide-left-leave-to {
+    transform: translateX(-100%) !important;
+    opacity: 0;
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active {
+    transition: all 0.3s ease;
+}
+
+.slide-right-enter-from,
+.slide-right-leave-to {
+    transform: translateX(100%) !important;
+    opacity: 0;
+}
+
+.slide-from-left-enter-active,
+.slide-from-left-leave-active {
+    transition: all 0.2s ease;
+}
+
+.slide-from-left-enter-from,
+.slide-from-left-leave-to {
+    transform: translateX(-100%) !important;
+    opacity: 0;
+}
+
+.slide-from-right-enter-active,
+.slide-from-right-leave-active {
+    transition: all 0.2s ease;
+}
+
+.slide-from-right-enter-from,
+.slide-from-right-leave-to {
+    transform: translateX(100%) !important;
+    opacity: 0;
+}
+
+.slide-from-top-enter-active,
+.slide-from-top-leave-active {
+    transition: all 0.2s ease;
+}
+
+.slide-from-top-enter-from,
+.slide-from-top-leave-to {
+    transform: translateY(-100%) !important;
+    opacity: 0;
+}
+
+.slide-from-bottom-enter-active,
+.slide-from-bottom-leave-active {
+    transition: all 0.2s ease;
+}
+
+.slide-from-bottom-enter-from,
+.slide-from-bottom-leave-to {
+    transform: translateY(100%) !important;
+    opacity: 0;
+}
+
+.flip-enter-active,
+.flip-leave-active {
+    position: absolute;
+
+    transition: all 1s ease;
+}
+
+
+.flip-enter-from,
+.flip-leave-to {
+    transform: rotateY(90deg) !important;
+    opacity: 0;
+}
+
+.modal-from-top-enter-active,
+.modal-from-top-leave-active {
+    transition: all 0.2s ease;
+}
+
+.modal-from-top-enter-from,
+.modal-from-top-leave-to {
+    transform: translate(-50%, -100%) !important;
+    opacity: 0;
+}
+
+.modal-from-bottom-enter-active,
+.modal-from-bottom-leave-active {
+    transition: all 0.2s ease;
+}
+
+.modal-from-bottom-enter-from,
+.modal-from-bottom-leave-to {
+    transform: translate(-50%, 100%) !important;
+    opacity: 0;
+}
+
+.modal-from-left-enter-active,
+.modal-from-left-leave-active {
+    transition: all 0.2s ease;
+}
+
+.modal-from-left-enter-from,
+.modal-from-left-leave-to {
+    transform: translate(-100%, -50%) !important;
+    opacity: 0;
+}
+
+.modal-from-right-enter-active,
+.modal-from-right-leave-active {
+    transition: all 0.2s ease;
+}
+
+.modal-from-right-enter-from,
+.modal-from-right-leave-to {
+    transform: translate(100%, -50%) !important;
+    opacity: 0;
+}
