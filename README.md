@@ -1,4 +1,4 @@
-# VMLY&R - Vue 3 Component UI Library Boilerplate
+# Vue 3 Component UI Library Boilerplate
 
 This is a front-end component ui library build in [Vue 3](https://vuejs.org/) + [Typescript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/) + [Tailwindcss](https://tailwindcss.com/)
  
@@ -17,12 +17,13 @@ This is a front-end component ui library build in [Vue 3](https://vuejs.org/) + 
 
 ### Components
 1. Accordion
-2. Carousel
-3. Modal
-4. Pagination
-5. Sliders
-6. Tabs
-7. Tooltip
+2. Drawer
+3. Carousel
+4. Modal
+5. Pagination
+6. Sliders
+7. Tabs
+8. Tooltip
 
 ## Installation
 To install, run `yarn install` or `npm install` in the command line
