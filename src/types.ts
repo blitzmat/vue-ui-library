@@ -29,7 +29,7 @@ export interface VYCMediaType {
     youtubeId?: string
     mediaClasses?: string
     fullWidth?: boolean
-    loading?: string
+    loading?: "lazy" | "eager" | undefined
 }
 
 // export interface VYCImageSrcsetType {
