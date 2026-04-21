@@ -1,5 +1,5 @@
 {
-  "name": "package-vue-component-ui",
+  "name": "vue-component-ui",
   "private": true,
   "version": "1.0.2",
   "license": "proprietary",
@@ -13,22 +13,22 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/package-vue-component-ui.umd.js",
-  "module": "./dist/package-vue-component-ui.es.js",
+  "main": "./dist/vue-component-ui.umd.js",
+  "module": "./dist/vue-component-ui.es.js",
   "exports": {
     ".": {
-      "import": "./dist/package-vue-component-ui.es.js",
-      "require": "./dist/package-vue-component-ui.umd.js"
+      "import": "./dist/vue-component-ui.es.js",
+      "require": "./dist/vue-component-ui.umd.js"
     },
-    "./dist/package-vue-component-ui.css": {
-      "import": "./dist/package-vue-component-ui.css",
-      "require": "./dist/package-vue-component-ui.css"
+    "./dist/vue-component-ui.css": {
+      "import": "./dist/vue-component-ui.css",
+      "require": "./dist/vue-component-ui.css"
     }
   },
   "types": "./dist/main.d.ts",
   "scripts": {
     "dev": "vite --host",
-    "docs": "vite build",
+    "docs": "vue-tsc && vite build --config vite.docs.config.ts",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
@@ -37,6 +37,7 @@
     "vue-router": "4"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.56.0",
     "@types/aos": "^3.0.7",
     "@types/node": "^20.4.1",
     "@vitejs/plugin-vue": "^4.0.0",
