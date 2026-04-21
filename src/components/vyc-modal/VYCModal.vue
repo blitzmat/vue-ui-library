@@ -49,7 +49,6 @@ const computedOverlayClasses = computed(() => {
 })
 
 const computedModalClasses = computed(() => {
-    console.log(props)
     return {
         'z-50 fixed overflow-y-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 before:block': true,
         'w-full h-full': !props.modalClasses,

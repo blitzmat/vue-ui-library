@@ -126,7 +126,6 @@ function onDragStart(event: MouseEvent|TouchEvent) {
 function onDragEnd(event: MouseEvent|TouchEvent) {
     const nextSlide = slides.value ? slides.value?.clientWidth / 4: 0
     const x = event instanceof TouchEvent ? afterDragTranslate.value : event.x
-    console.log(startMouseX.value, x, slides.value?.clientWidth)
     if (currentSlide.value < indicators.value-1 && startMouseX.value - x > nextSlide) {
         slideDirection.value = 'right'
         next()

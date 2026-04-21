@@ -1,5 +1,5 @@
-import {onBeforeUnmount, onMounted,ref} from "vue"
-import type {Ref} from "vue"
+import { onBeforeUnmount, onMounted, ref } from "vue"
+import type { Ref } from "vue"
 
 const BREAKPOINTS = {
     mobile: 425,
@@ -55,12 +55,11 @@ export default function useBreakpoints(): Ref<Breakpoints> {
     })
 
     function getWidthFromUserAgent() {
-        console.log('user agent');
         return 1920;
     }
 
     function calculateBreakPoint(): Breakpoints {
-        let width =typeof window === "undefined" ? getWidthFromUserAgent() : window.innerWidth
+        let width = typeof window === "undefined" ? getWidthFromUserAgent() : window.innerWidth
         breakpoints.value = {
             width,
             lt_mobile: width < BREAKPOINTS.mobile,

@@ -1,63 +1,68 @@
 <script setup lang="ts">
-import { VYCDrawer } from "@/components"
-import { ref } from "vue"
-import router from "./router"
+import { ref } from 'vue'
+import { useGroupedMenu } from '@/composables/useGroupedMenu'
 
-const showMenu = ref<boolean>(true)
-// const drawer = ref()
-
-// router.beforeEach((to, from) => {
-//     drawer.value.close()
-// })
+const showMenu = ref<boolean>(false)
+const { menuGroups } = useGroupedMenu()
 
 </script>
 
 <template>
-    <section class="wrapper">
-        <button @click="showMenu = true" v-if="!showMenu" class="btn menu-btn menu-btn--close">
-            menu
+  <section class="wrapper">
+    <button @click="showMenu = true" v-if="!showMenu" class="btn menu-btn menu-btn--close">
+      <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Menu">
+          <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24">
+
+          </rect>
+          <line x1="5" y1="7" x2="19" y2="7" id="Path" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+
+          </line>
+          <line x1="5" y1="17" x2="19" y2="17" id="Path" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+
+          </line>
+          <line x1="5" y1="12" x2="19" y2="12" id="Path" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+
+          </line>
+          </g>
+          </g>
+      </svg>
+    </button>
+    <Transition name="slide-from-left">
+      <aside v-if="showMenu" class="sidebar">
+        <button @click="showMenu = false" class="btn menu-btn menu-btn--open">
+            <svg width="24px" height="24px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
         </button>
-        <Transition name="slide-from-left">
-            <aside v-if="showMenu" class="sidebar">
-                <button @click="showMenu = false" class="btn menu-btn menu-btn--open">
-                    menu
-                </button>
-                <nav class="flex flex-col">
-                    <h2 class="h2">Menu</h2>
-                    <router-link to="/" class="nav-item">Home</router-link>
-                    <router-link to="/accordion" class="nav-item">Accordion</router-link>
-                    <router-link to="/button" class="nav-item">Buttons</router-link>
-                    <router-link to="/carousel" class="nav-item">Carousel</router-link>
-                    <router-link to="/drawer" class="nav-item">Drawer</router-link>
-                    <router-link to="/forms" class="nav-item">Forms</router-link>
-                    <router-link to="/forms/form" class="nav-item--sub">Form</router-link>
-                    <router-link to="/forms/checkbox" class="nav-item--sub">Checkbox</router-link>
-                    <router-link to="/forms/input" class="nav-item--sub">Input</router-link>
-                    <router-link to="/forms/radio" class="nav-item--sub">Radio</router-link>
-                    <router-link to="/forms/select" class="nav-item--sub">Select</router-link>
-                    <router-link to="/forms/textarea" class="nav-item--sub">Textarea</router-link>
-                    <router-link to="/gallery" class="nav-item">Gallery</router-link>
-                    <router-link to="/modal" class="nav-item">Modal</router-link>
-                    <router-link to="/pagination" class="nav-item">Pagination</router-link>
-                    <router-link to="/progress" class="nav-item">Progress</router-link>
-                    <router-link to="/images" class="nav-item">Images</router-link>
-                    <router-link to="/image-reveal" class="nav-item">ImageReveal</router-link>
-                    <router-link to="/scroll-animation" class="nav-item">ScrollAnimations</router-link>
-                    <router-link to="/slider" class="nav-item">Sliders</router-link>
-                    <router-link to="/tabs" class="nav-item">Tabs</router-link>
-                    <router-link to="/toast" class="nav-item">Toast</router-link>
-                    <router-link to="/tooltip" class="nav-item">Tooltip</router-link>
-                    <router-link to="/translate" class="nav-item">Translate</router-link>
-                    <router-link to="/truncate" class="nav-item">Truncate</router-link>
-                    <router-link to="/video" class="nav-item">Video</router-link>
-                    <router-link to="/wizard" class="nav-item">Wizard</router-link>
-                </nav>
-            </aside>
-        </Transition>
-        <main class="main">
-            <router-view></router-view>
-        </main>
-    </section>
+        <nav class="flex flex-col">
+          <h2 class="h2">Menu</h2>
+
+          <template v-for="group in menuGroups" :key="group.key">
+            <!-- Group Heading (only shown if there is more than one route in the group) -->
+            <h3 v-if="group.routes.length > 1" class="group-heading">
+              {{ group.title }}
+            </h3>
+
+            <!-- Render each route in the group -->
+            <router-link
+              v-for="route in group.routes"
+              :key="route.path"
+              :to="route.path"
+              :class="[
+                'nav-item',
+                { 'nav-item--sub': group.routes.length > 1 && route.path !== `/${group.key}` }
+              ]"
+            >
+              {{ route.meta?.title || route.name }}
+            </router-link>
+          </template>
+        </nav>
+      </aside>
+    </Transition>
+    <main class="main">
+      <router-view />
+    </main>
+  </section>
 </template>
 
 <style>
@@ -113,19 +118,13 @@ pre {
     color: white;
     font-size: 80%;
 }
-.menu-btn {
-    top: 1rem;
-    transform: rotate(-90deg);
-    transform-origin: bottom;
-}
+
 .menu-btn--open {
-    transform: translateX(100%) rotate(-90deg);
     position: absolute;
-    right: 7px;
+    right: 1rem;
 }
 .menu-btn--close {
     position: fixed;
-    left: -7px;
 }
 
 .slide-from-left-enter-active,
@@ -137,5 +136,15 @@ pre {
 .slide-from-left-leave-to {
     transform: translateX(-100%)!important;
     opacity: 0;
+}
+
+.group-heading {
+  font-size: 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ddd;
 }
 </style>
