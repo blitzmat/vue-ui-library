@@ -9,11 +9,12 @@ RUN npm run docs
 
 # Step 2: Serve with Nginx
 FROM nginx:stable-alpine as production-stage
-# Copy the build output from the build-stage to Nginx's public folder
 COPY --from=build-stage /app/dist-docs /usr/share/nginx/html
-# Cloud Run requires the container to listen on the port defined by the PORT environment variable (default 8080)
-# We overwrite the default Nginx config to listen on the correct port
-RUN sed -i 's/listen\(.*\)80;/listen ${PORT};/' /etc/nginx/conf.d/default.conf
+
+# Copy your template to the templates directory
+COPY default.conf.template /etc/nginx/templates/default.conf.template
+
+# IMPORTANT: Do NOT override CMD or ENTRYPOINT. 
+# The base image's default entrypoint will handle the substitution.
 EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
 
